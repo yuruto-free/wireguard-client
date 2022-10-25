@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.7'
 
 services:
   wireguard:
@@ -12,14 +12,15 @@ services:
       - PGID=1000
       - TZ=Asia/Tokyo
     networks:
-      - vpn
+      - backbone
     volumes:
-      - /lib/modules:/lib/modules
+      - /lib/modules:/lib/modules:ro
       - ./config:/config
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: always
 
 networks:
-  vpn:
-    name: vpn
+  backbone:
+    name: backbone
+    driver: bridge
