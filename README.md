@@ -37,3 +37,16 @@ docker-compose ps
 docker-compose logs
 ```
 
+## FAQ
+If the container does not start on your Raspberry Pi, access to the [libseccomp](https://ftp.debian.org/debian/pool/main/libs/libseccomp/) and install the following library.
+
+```sh
+# armhf
+wget https://ftp.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.4-1+b1_armhf.deb
+sudo dpkg -i libseccomp2_2.5.4-1+b1_armhf.deb
+
+# arm64
+wget https://ftp.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.4-1+b1_arm64.deb
+sudo dpkg -i libseccomp2_2.5.4-1+b1_arm64.deb
+```
+
