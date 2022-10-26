@@ -3,7 +3,7 @@
 ## Preparation
 1. Copy a peer configuration file from your WireGuard server.
 1. Set the configuration file to `./config/wg0.conf`.
-1. 1. Update `PUID` and `PGID` in `docker-compose.yml`. These IDs can be obtained by executing the following command.
+1. Update `PUID` and `PGID` in `docker-compose.yml`. These IDs can be obtained by executing the following command.
 
     ```sh
     id ${USER}
@@ -11,6 +11,10 @@
     # uid=1000(yuruto) gid=1000(yuruto) groups=1000(yuruto)
     # PUID = 1000 (= uid), PGID = 1000 (= gid)
     ```
+
+1. Copy the `.yml` file as `docker-compose.yml` to match the network mode. The network mode is listed below.
+    * host: `host-mode.yml`
+    * bridge: `bridge-mode.yml`
 
 ## Build
 Run the following command.
