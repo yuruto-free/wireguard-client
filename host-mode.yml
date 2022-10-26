@@ -11,16 +11,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Tokyo
-    networks:
-      - backbone
+    network_mode: host
     volumes:
-      - /lib/modules:/lib/modules:ro
+      - /lib/modules:/lib/modules
       - ./config:/config
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
     restart: always
-
-networks:
-  backbone:
-    name: backbone
-    driver: bridge
