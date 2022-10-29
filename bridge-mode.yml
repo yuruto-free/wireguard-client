@@ -22,7 +22,12 @@ services:
     restart: always
 
   nginx:
-    image: nginx:latest
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      args:
+        TZ: 'Asia/Tokyo'
+    image: custom.nginx
     container_name: nginx
     environment:
       - TZ=Asia/Tokyo
