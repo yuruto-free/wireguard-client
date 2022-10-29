@@ -1,0 +1,15 @@
+i[Interface]
+Address = 10.1.2.2
+PrivateKey = ABCDEfghijklmnOPQRstuvwxyz0123456789=+/*-abc
+ListenPort = 51820
+MTU = 1380
+DNS = 10.1.2.1
+PostUp = iptables -t nat -A POSTROUTING -d 10.0.16.0/24 -j MASQUERADE
+PostDown = iptables -t nat -D POSTROUTING -d 10.0.16.0/24 -j MASQUERADE
+
+[Peer]
+PublicKey = BCDEfghijklmnOPQRstuvwxyz0123456789=+/*-abcd
+PresharedKey = CDEfghijklmnOPQRstuvwxyz0123456789=+/*-abcde
+Endpoint = example.vpn.com:51820
+AllowedIPs = 10.1.2.0/24
+PersistentKeepAlive = 10
