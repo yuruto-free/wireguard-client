@@ -10,6 +10,8 @@
     PostDown = iptables -t nat -D POSTROUTING -d 10.0.16.0/24 -j MASQUERADE
     ```
 
+1. Create `.env` file in `./envs/nginx` with reference to [the README.md](./envs/nginx/README.md).
+
 1. Update `PUID` and `PGID` in `docker-compose.yml`. These IDs can be obtained by executing the following command.
 
     ```sh

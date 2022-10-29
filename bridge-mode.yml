@@ -11,8 +11,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Tokyo
-    env_file:
-      - ./envs/wireguard/.env
     networks:
       backbone:
         ipv4_address: 10.0.16.2
