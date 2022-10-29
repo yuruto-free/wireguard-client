@@ -3,6 +3,13 @@
 ## Preparation
 1. Copy a peer configuration file from your WireGuard server.
 1. Set the configuration file to `./config/wg0.conf`.
+1. Add the following configuration in Interface section to `./config/wg0.conf`. See `./sample.wg0` for details.
+
+    ```sh
+    PostUp = iptables -t nat -A POSTROUTING -d 10.0.16.0/24 -j MASQUERADE
+    PostDown = iptables -t nat -D POSTROUTING -d 10.0.16.0/24 -j MASQUERADE
+    ```
+
 1. Update `PUID` and `PGID` in `docker-compose.yml`. These IDs can be obtained by executing the following command.
 
     ```sh
@@ -45,12 +52,20 @@ docker-compose logs
 If the container does not start on your Raspberry Pi, access to the [libseccomp](https://ftp.debian.org/debian/pool/main/libs/libseccomp/) and install the following library.
 
 ```sh
-# armhf
+# ========
+# Examples
+# ========
+# armhf/armv7l
 wget https://ftp.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.4-1+b1_armhf.deb
 sudo dpkg -i libseccomp2_2.5.4-1+b1_armhf.deb
 
-# arm64
+# arm64/aarch64
 wget https://ftp.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.4-1+b1_arm64.deb
 sudo dpkg -i libseccomp2_2.5.4-1+b1_arm64.deb
 ```
 
+The following commands can be used to find out whether you fall under the `armhf/armv7l` or `arm64/aarch64` category.
+
+```sh
+uname -m
+```

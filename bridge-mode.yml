@@ -12,13 +12,30 @@ services:
       - PGID=1000
       - TZ=Asia/Tokyo
     networks:
-      - backbone
+      backbone:
+        ipv4_address: 10.0.16.2
     volumes:
       - /lib/modules:/lib/modules
       - ./config:/config
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    environment:
+      - TZ=Asia/Tokyo
+    networks:
+      backbone:
+        ipv4_address: 10.0.16.3
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     restart: always
 
 networks:
   backbone:
     name: backbone
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.16.0/24
